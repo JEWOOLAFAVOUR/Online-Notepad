@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react'
+import LoginScreen from './screen/Auth/LoginScreen'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeScreen from './screen/Main/Home/HomeScreen';
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import reduxStore from './redux/store';
+import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export const reduxPersistStore = persistStore(reduxStore);
+
+
+export default function App() {
+
+  // const setUrlConfig = () => {
+  //   console.log('called setUrlConfig');
+  //   axios.defaults.baseURL = BASE_URL;
+  // }
+  // useEffect(() => {
+  //   setUrlConfig();
+  // })
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Provider store={reduxStore}>
+        <PersistGate persistor={reduxPersistStore}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/home" element={<HomeScreen />} />
+
+            </Routes>
+          </BrowserRouter>
+        </PersistGate>
+        <ToastContainer />
+      </Provider>
     </>
   )
 }
-
-export default App
