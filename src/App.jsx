@@ -8,7 +8,6 @@ import reduxStore from './redux/store';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 
-
 export const reduxPersistStore = persistStore(reduxStore);
 
 
