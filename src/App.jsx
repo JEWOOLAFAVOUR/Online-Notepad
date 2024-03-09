@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import LoginScreen from './screen/Auth/LoginScreen'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screen/Main/Home/HomeScreen';
 import { Provider } from 'react-redux'
@@ -14,14 +13,6 @@ export const reduxPersistStore = persistStore(reduxStore);
 
 
 export default function App() {
-
-  // const setUrlConfig = () => {
-  //   console.log('called setUrlConfig');
-  //   axios.defaults.baseURL = BASE_URL;
-  // }
-  // useEffect(() => {
-  //   setUrlConfig();
-  // })
 
 
   return (
